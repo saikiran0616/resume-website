@@ -1,6 +1,10 @@
 /* style.css - simple, responsive resume site */
 :root{
-  --bg:#f6f8fb; --card:#fff; --text:#1b1b1b; --muted:#555;
+  --bg:#f6f8fb; 
+  --card:#fff; 
+  --text:#1b1b1b; 
+  --muted:#555;
+  --primary: #0071e3; /* new primary color used for nav pills & glow */
 }
 *{box-sizing:border-box}
 body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0;background:var(--bg);color:var(--text);line-height:1.5}
@@ -8,8 +12,63 @@ body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica
 .site-header{background:linear-gradient(90deg,rgba(2,132,199,0.12),transparent);padding:18px 0;border-bottom:1px solid rgba(0,0,0,0.06)}
 .site-header h1{margin:0;font-size:28px}
 .site-header .sub{margin:6px 0 8px;color:var(--muted);font-size:14px}
-nav{margin-top:10px}
-nav a{margin-right:12px;color:var(--text);text-decoration:none;font-weight:600}
+
+/* ---------- NAVIGATION (UPDATED: Rounded pill + effects) ---------- */
+nav{
+  margin-top:10px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+/* base nav link (rounded pill) */
+nav a{
+  margin-right:0; /* spacing handled by gap on nav */
+  padding:8px 18px;
+  border: 2px solid var(--primary);
+  border-radius: 50px;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, color 200ms ease;
+  background: transparent;
+  box-shadow: 0 0 5px rgba(0, 113, 227, 0.10); /* subtle default shadow */
+  display: inline-block;
+}
+
+/* hover state: lift + glow */
+nav a:hover{
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 113, 227, 0.28);
+}
+
+/* active / current page */
+nav a.active{
+  background: linear-gradient(180deg, var(--primary), #005bb5);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(0, 113, 227, 0.30);
+  transform: translateY(-2px);
+}
+
+/* focus for accessibility */
+nav a:focus{
+  outline: 3px solid rgba(0,113,227,0.12);
+  outline-offset: 4px;
+}
+
+/* smaller screens: make pills slightly smaller and wrap */
+@media(max-width:520px){
+  nav a{
+    padding:7px 12px;
+    font-size:14px;
+    border-width:1.5px;
+  }
+}
+/* ---------- END NAVIGATION ---------- */
+
 .actions{margin-top:10px}
 .button, #toggleTheme{display:inline-block;padding:8px 12px;border-radius:8px;background:#0b69ce;color:#fff;text-decoration:none;border:none;cursor:pointer;font-weight:600}
 .button{background:#0b69ce}
